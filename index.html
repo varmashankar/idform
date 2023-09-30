@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>IDForm</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">  
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Top Menu -->
+            <div class="col-md-12" style="background-color:#333;">
+                <nav class="top-menu">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="profile">
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    
+     <div class="row">
+            <!-- Side Menu Column -->
+            <div class="col-md-1 m-0 p-0">
+                <nav class="side-menu">
+                    <h3>IDFORM</h3>
+                    <hr>
+                    <ul>
+                        <li><a href="#" onclick="loadCalculator()"> <i class="fa-solid fa-calculator px-2"></i> Unit Price Calculator</a></li>
+                        <li><a href="#" onclick="loadPage1()"> <i class="fa-solid fa-bell px-2"></i> Belpromo Calculator</a></li>
+                        <li><a href="#" onclick="loadPage2()"> <i class="fa-solid fa-pen-fancy px-2"></i> Goldstar Calculator</a></li>
+                        <li><a href="#" onclick="loadPage3()"> <i class="fa-solid fa-pen-fancy px-2"></i> Description Generator</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Main Content Columns -->
+        <div class="col-md-11 mt-5 right-panel" id="right-panel">
+            <!-- Calculator Section -->
+            <section class="all-calculators" id="all-calculators">
+                <!-- Calculator content will be loaded here -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 m-auto alpha-calculator">
+                            <div class="top-heading">
+                                <h4>Product Price Calculator</h4>
+                            </div>
+                            <div class="intro-paragraph">
+                                <p class="text-center">Use Below code to calculate the pricing: <br> (P, Q, R, S, T, U, V, W, X, Y, Z)</p>
+                            </div>
+            
+                            <form id="pricingCalculator" class="calculator-form">
+                                <div class="mb-1">
+                                    <label for="unitPriceAlpha" class="form-label">Unit Price:</label>
+                                    <input type="number" id="unitPriceAlpha" name="unitPriceAlpha" step="0.01" class="form-control" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="codeAlpha" class="form-label">Alphabet Code:</label>
+                                    <input type="text" id="codeAlpha" name="codeAlpha" maxlength="1" pattern="[pPqQrRsStTuUvVwWxXyYzZ]" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary p-3">Calculate</button>
+                                <button type="button" class="btn btn-secondary p-3 ml-2" onclick="clearFormAlpha()">Clear</button>
+                            </form>
+            
+                            <p id="resultAlpha" class="result text-center"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page 1 Section (Initially hidden) -->
+            <section class="page1-content" id="page1-content"">
+                <!-- Page 1 content goes here -->
+                <div class="row belpromo-calculator m-auto">
+                    <div class="col-md-12">
+                     <div class="top-heading">
+                         <h4>BelPromo Pricing Calculator</h4>
+                     </div>
+                     <div class="intro-paragraph mb-3">
+                         <p class="text-center">Calculate Belpromo Factory Pricing</p>
+                     </div>
+     
+                     <form id="belpricingCalculator" class="calculator-form">
+                         <div class="mb-3">
+                             <label for="unitPriceBel" class="form-label">Unit Price:</label>
+                             <input type="number" id="unitPriceBel" name="unitPriceBel" step="0.01" class="form-control" required>
+                         </div>
+                         <button type="submit" class="btn btn-primary p-3">Calculate</button>
+                         <button type="button" class="btn btn-secondary p-3 ml-2" onclick="clearFormBel()">Clear</button>
+                     </form>
+     
+                     <p id="resultBel" class="result text-center"></p>
+                    </div>
+                 </div>
+            </section>
+
+            <!-- Page 2 Section (Initially hidden) -->
+            <section class="page2-content" id="page2-content">
+                <div class="row m-2 goldstar-calculator m-auto">
+                    <div class="col-md-12">
+                        <div class="top-heading">
+                            <h4>Goldstar Pricing Calculator</h4>
+                        </div>
+                        <div class="intro-paragraph mb-3">
+                            <p class="text-center">Calculate Goldstar Factory Pricing</p>
+                        </div>
+        
+                        <form id="goldpricingCalculator" class="calculator-form">
+                            <div class="mb-3">
+                                <label for="unitPriceGol" class="form-label">Unit Price:</label>
+                                <input type="number" id="unitPriceGol" name="unitPriceGol" step="0.01" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary p-3">Calculate</button>
+                            <button type="button" class="btn btn-secondary ml-2 p-3" onclick="clearFormGol()">Clear</button>
+                        </form>
+        
+                        <p id="resultGol" class="result text-center"></p>
+                    </div>
+                </div>
+            </section>
+            <section class="page3-content" id="page3-content">
+    <div class="row m-2 description-generator m-auto">
+        <div class="col-md-12">
+            <div class="top-heading">
+                <h4>Description Generator</h4>
+            </div>
+            <div class="intro-paragraph mb-3">
+                <p class="text-center">Please provide the detail to generate the description.</p>
+            </div>
+
+            <form id="descGenerator" class="calculator-form">
+                <div class="mb-3">
+                    <label for="itemCode" class="form-label">Factory Item Code:</label>
+                    <input type="text" id="itemCode" name="itemCode" class="form-control" required>
+                </div>
+                <!-- Material and Imprint Color in the same column -->
+<div class="mb-3">
+    <label for="materialImprintColor" class="form-label">Material and Imprint Color:</label>
+    <div class="input-group">
+        <input type="text" id="materialColor" name="materialColor" class="form-control" placeholder="Material Color" required>
+        <input type="text" id="imprintColor" name="imprintColor" class="form-control" placeholder="Imprint Color" required>
+    </div>
+</div>
+
+
+                <!-- Optional radio buttons -->
+<div class="mb-3 p-2">
+    <div class="form-check my-2">
+        <input type="radio" id="optionalItem1" name="optionalItems" value="Both Side Imprint" class="form-check-input">
+        <label for="optionalItem1" class="form-check-label">Both Side Imprint - Same Art</label>
+    </div>
+    <div class="form-check my-2">
+        <input type="radio" id="optionalItem2" name="optionalItems" value="Both Side Different Imprint" class="form-check-input">
+        <label for="optionalItem2" class="form-check-label">Both Side Imprint - Different Art</label>
+    </div>
+    <!-- Add more radio button options as needed -->
+</div>
+
+
+
+                <button type="submit" class="btn btn-primary p-3">Generate</button>
+                <button type="button" class="btn btn-secondary ml-2 p-3" onclick="clearForm()">Clear</button>
+            </form>
+
+            <p id="generateDesc" class="generatedesc text-center"></p>
+        </div>
+    </div>
+</section>
+        </div>
+    </div>
+</div>
+</div>
+
+
+    <!--
+        <section class="all-calculators">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 m-1 alpha-calculator">
+                    <div class="top-heading">
+                        <h1>Product Unit <br> Pricing Calculator</h1>
+                    </div>
+                    <div class="intro-paragraph mb-3">
+                        <h4 class="text-center py-3">Use Below code to calculate the pricing:</h4><h4 class="mt-3 text-center">(P, Q, R, S, T, U, V, W, X, Y, Z)</h4>
+                    </div>
+    
+                    <form id="pricingCalculator" class="calculator-form">
+                        <div class="my-4">
+                            <label for="unitPriceAlpha" class="form-label">Unit Price:</label>
+                            <input type="number" id="unitPriceAlpha" name="unitPriceAlpha" step="0.01" class="form-control" required>
+                        </div>
+                        <div class="my-4">
+                            <label for="codeAlpha" class="form-label">Alphabet Code:</label>
+                            <input type="text" id="codeAlpha" name="codeAlpha" maxlength="1" pattern="[pPqQrRsStTuUvVwWxXyYzZ]" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary p-3">Calculate</button>
+                        <button type="button" class="btn btn-secondary p-3 ml-2" onclick="clearFormAlpha()">Clear</button>
+                    </form>
+    
+                    <p id="resultAlpha" class="result text-center"></p>
+                </div>
+                <div class="col-md-6">
+                    <div class="row m-2 belpromo-calculator">
+                       <div class="col-md-12">
+                        <div class="top-heading">
+                            <h3>BelPromo Pricing Calculator</h3>
+                        </div>
+                        <div class="intro-paragraph mb-3">
+                            <p>Calculate Belpromo Factory Pricing</p>
+                        </div>
+        
+                        <form id="belpricingCalculator" class="calculator-form">
+                            <div class="mb-3">
+                                <label for="unitPriceBel" class="form-label">Unit Price:</label>
+                                <input type="number" id="unitPriceBel" name="unitPriceBel" step="0.01" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Calculate</button>
+                            <button type="button" class="btn btn-secondary ml-2" onclick="clearFormBel()">Clear</button>
+                        </form>
+        
+                        <p id="resultBel" class="result text-center"></p>
+                       </div>
+                    </div>
+                    <div class="row m-2 goldstar-calculator">
+                        <div class="col-md-12">
+                            <div class="top-heading">
+                                <h3>Goldstar Pricing Calculator</h3>
+                            </div>
+                            <div class="intro-paragraph mb-3">
+                                <p>Calculate Goldstar Factory Pricing</p>
+                            </div>
+            
+                            <form id="goldpricingCalculator" class="calculator-form">
+                                <div class="mb-3">
+                                    <label for="unitPriceGol" class="form-label">Unit Price:</label>
+                                    <input type="number" id="unitPriceGol" name="unitPriceGol" step="0.01" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Calculate</button>
+                                <button type="button" class="btn btn-secondary ml-2" onclick="clearFormGol()">Clear</button>
+                            </form>
+            
+                            <p id="resultGol" class="result text-center"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+    
+    
+    <script type="text/javascript" src="main.js"></script>
+    <!-- Include Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     
+</body>
+</html>

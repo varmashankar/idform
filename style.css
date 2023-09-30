@@ -1,0 +1,127 @@
+ /* Custom CSS */
+        body {
+            background-color: #f8f9fa;
+            overflow-y:;
+        }
+
+        .alpha-calculator, .belpromo-calculator, .goldstar-calculator {
+            max-width: 500px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .description-generator{
+            max-width: 50vw;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .calculator-form {
+            margin-bottom: 20px;
+        }
+
+        .result {
+            font-weight: bold;
+            font-size: 24px;
+            color: #28a745;
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+        }
+        .generatedesc{
+            font-weight: bold;
+            font-size: 12px;
+            color: #28a745;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        /* Styling for the top heading and paragraph */
+        .top-heading {
+            color: #000;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+        }
+        .top-heading h4{
+            font-weight: 900;
+        }
+
+        .intro-paragraph {
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+        }
+        .intro-paragraph p{
+            font-weight: 600;
+        }
+                /* Style the side menu */
+       /* Style for the side menu */
+.side-menu {
+    position: relative;
+    width: 15vw;
+    background-color: #333;
+    color: #fff;
+    padding: 20px 5px 20px 5px;
+    height: 100vh;
+    z-index: 999;
+}
+
+.side-menu h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style for the menu items */
+.side-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.side-menu li {
+    margin-bottom: 10px;
+}
+
+/* Style for the links */
+.side-menu a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 15px 10px 15px 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect and color change */
+.side-menu a:hover {
+    background-color: #e0dfdf25;
+    color: #fff;
+    text-decoration: none;
+}
+                /* Define your CSS styles here */
+                .all-calculators, .page1-content, .page2-content {
+            display: none;
+        }
+    /* Custom Top Menu Styles */
+    .top-menu {
+        background-color: #333; /* Background color */
+        color: #fff; /* Text color */
+        padding: 20px; /* Spacing */
+    }
+
+    .top-menu h2 {
+        margin: 0;
+        font-size: 24px; /* Adjust font size */
+    }
+
+    .profile {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Adjust spacing between name and icon */
+    }
+
+    .profile-name {
+        font-weight: bold;
+    }

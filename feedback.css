@@ -1,0 +1,169 @@
+/* feedback.css */
+
+body {
+    background-color: #f8f9fa;
+}
+.wrapper-cont{
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+.title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #343a40;
+}
+.heading-primary {
+    font-size: 2.5rem; /* Adjust font size */
+    font-weight: 700; /* Make the font bold */
+    color: #333; /* Darker color for better readability */
+    margin-bottom: .5rem; /* Space below the heading */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for emphasis */
+}
+.feedback-list {
+    padding: 0;
+}
+
+.feedback-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+}
+.feedback-data{
+    padding: 10px;
+    border-radius: 0.25rem;
+    background-color: #c300ff4f;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.response-data{
+    border-radius: 0.5rem;
+    background-color: #ffffff35!important;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.feedback-item p {
+    margin: 0;
+    font-size: 1rem;
+    color: #000000;
+}
+.feed-data{
+    padding: 0.3rem 0.3rem 0.5rem 0.2rem;
+    color: #fff;
+    text-transform:uppercase;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    margin-left: auto;
+}
+
+.modal-content {
+    border-radius: 0.375rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+    padding: 1rem;
+}
+
+.btn-primary {
+    width: 100%;
+}
+
+.btn-secondary {
+    margin-right: 0.5rem;
+}
+.card {
+    border-radius: 0.5rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.card-footer {
+    border-top: none; /* Remove the border from the card-footer */
+}
+
+.response-item {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    background-color: #f9f9f9;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.card-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.card-title{
+    text-transform: uppercase;
+    font-size: smaller;
+}
+.card-body .response-item {
+    margin-top: 1rem;
+}
+/* Styling for profile pictures */
+.card-body img {
+    border: 2px solid #dee2e6; /* Border around the profile picture */
+}
+
+
+.response-item {
+    background-color: #f8f9fa; /* Light background color for responses */
+    border-left: 4px solid #007bff; /* Blue left border for emphasis */
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.response-item img {
+    width: 50px; /* Consistent size for profile picture */
+    height: 50px;
+    border: 2px solid #007bff; /* Blue border around the profile picture */
+}
+
+.response-item div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.response-item p {
+    margin: 0;
+}
+
+.response-item p.mb-1 {
+    margin-bottom: 5px; /* Space between admin label and response message */
+}
+
+.response-item small {
+    display: block;
+    margin-top: 5px;
+    color: #6c757d; /* Slightly muted color for timestamp */
+}
+
+.no-responses-message {
+    color: #6c757d; /* Muted color for message text */
+    font-style: italic; /* Italicize text for emphasis */
+    text-align: center; /* Center align the text */
+}

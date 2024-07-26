@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="feedback.css"> <!-- Link to your CSS if you have one -->
+    <script type="module" src="feedResponse.js" defer></script>
+    <style>
+        /* Style for the navigation element */
+nav {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f8f9fa; /* Light background for contrast */
+    border-bottom: 1px solid #dee2e6; /* Light border for separation */
+}
+
+/* Style for the link */
+.return {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Center items vertically */
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Remove underline from link */
+    font-size: 16px; /* Adjust font size */
+    font-weight: 500; /* Adjust font weight */
+}
+
+/* Style for the Font Awesome icon */
+.return li {
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 20px; /* Size of the icon */
+    color: #007bff; /* Icon color to match link color */
+}
+
+/* Hover effect for the link */
+.return:hover {
+    color: #0056b3; /* Darker color on hover */
+}
+
+/* Hover effect for the icon */
+.return:hover li {
+    color: #0056b3; /* Darker color on hover */
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container wrapper-cont my-4 bg-white p-5">
+        <nav>
+            <a href="index.html" class="return"><li class="fas fa-arrow-left"></li> Go Back</a>
+        </nav>
+        <h1 class="text-center heading-primary">Feedbacks - Resonses</h1><hr>
+        <div id="feedback-list" class="row row-cols-1 row-cols-md-3 g-4 mt-3" >
+            <!-- Feedback items will be dynamically added here -->
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

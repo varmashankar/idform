@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Responses</title>
+    <meta name="description" content="Feedback and responses for IDForm.">
+    <meta name="keywords" content="feedback, responses, IDForm">
+    <meta name="author" content="Your Name">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../feedback.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
+            min-height: 100vh;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+        }
+        .feedback-main-card {
+            max-width: 1050px;
+            margin: 2.5rem auto;
+            background: rgba(255,255,255,0.85);
+            border-radius: 28px;
+            box-shadow: 0 12px 48px rgba(60,60,120,0.16);
+            padding: 2.7rem 2.2rem 2.2rem 2.2rem;
+            backdrop-filter: blur(8px) saturate(1.2);
+        }
+        .feedback-header {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 2.2rem;
+        }
+        .feedback-header h1 {
+            font-size: 2.3rem; font-weight: 900; letter-spacing: 1px; margin: 0; color: #2a2a4d;
+        }
+        .user-group-accordion {
+            border: none; background: none; margin-bottom: 2.2rem;
+        }
+        .user-group-card {
+            background: rgba(255,255,255,0.92);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(60,60,120,0.10);
+            margin-bottom: 1.2rem;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+        .user-group-card[aria-expanded="true"] {
+            box-shadow: 0 8px 32px rgba(60,60,120,0.18);
+        }
+        .user-group-header {
+            display: flex; align-items: center; gap: 1.3rem; padding: 1.3rem 1.5rem; cursor: pointer; background: linear-gradient(90deg, #e0e7ff 0%, #f8fafc 100%); border-bottom: 1px solid #e3e9f7;
+        }
+        .user-avatar-lg {
+            width: 60px; height: 60px; border-radius: 50%; background: #b4cafe; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #2a2a4d; font-size: 2.1rem; box-shadow: 0 2px 8px rgba(60,60,120,0.10);
+        }
+        .user-group-name {
+            font-size: 1.25rem; font-weight: 800; color: #2a2a4d; letter-spacing: 0.5px;
+        }
+        .user-feedback-count {
+            margin-left: auto; font-size: 1.01rem; color: #6b7280; background: #e0e7ff; border-radius: 999px; padding: 0.2em 1.1em; font-weight: 600;
+        }
+        .user-feedback-list {
+            display: flex; flex-direction: column; gap: 0.7rem; padding: 1.2rem 2.2rem 1.2rem 3.2rem; background: none;
+        }
+        .user-feedback-item {
+            position: relative; background: rgba(255,255,255,0.98); border-radius: 12px; box-shadow: 0 1px 8px rgba(60,60,120,0.06); padding: 1.1rem 1.2rem 1.1rem 2.2rem; margin-bottom: 0.5rem; transition: box-shadow 0.18s;
+        }
+        .user-feedback-item:before {
+            content: ""; position: absolute; left: 0.7rem; top: 1.2rem; width: 10px; height: 10px; background: #60a5fa; border-radius: 50%; box-shadow: 0 0 0 3px #e0e7ff; }
+        .user-feedback-item:hover { box-shadow: 0 4px 16px rgba(60,60,120,0.13); }
+        .user-feedback-message { font-size: 1.09rem; color: #222; font-weight: 500; margin-bottom: 0.3rem; }
+        .user-feedback-timestamp { font-size: 0.97rem; color: #a0a0b2; margin-bottom: 0.2rem; }
+        .admin-response-card {
+            background: linear-gradient(90deg, #e8f5e9 60%, #f8fafc 100%);
+            border-left: 4px solid #4caf50;
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            margin-top: 0.5rem;
+            color: #205c2c;
+            font-size: 1.04rem;
+            position: relative;
+            box-shadow: 0 1px 8px rgba(76,175,80,0.07);
+        }
+        .admin-badge {
+            font-size: 0.93rem; font-weight: 700; color: #388e3c; background: #c8e6c9; border-radius: 6px; padding: 0.2em 0.7em; margin-right: 0.7em;
+        }
+        .feedback-no-response {
+            color: #bdbdbd; font-size: 1.01rem; font-style: italic; margin-top: 0.5rem;
+        }
+        .sticky-pagination {
+            position: sticky; bottom: 0; left: 0; background: rgba(255,255,255,0.97); box-shadow: 0 -2px 12px rgba(60,60,120,0.07); padding: 0.7rem 0; z-index: 10; text-align: center; border-radius: 0 0 18px 18px;
+        }
+        .accordion-arrow {
+            margin-left: 1.2rem; font-size: 1.3rem; color: #7a7a8c; transition: transform 0.2s;
+        }
+        .user-group-card[aria-expanded="true"] .accordion-arrow { transform: rotate(90deg); color: #2563eb; }
+        .go-back-btn {
+            position: fixed;
+            top: 32px;
+            left: 32px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.7em;
+            background: rgba(255,255,255,0.85);
+            border-radius: 999px;
+            box-shadow: 0 4px 18px rgba(60,60,120,0.13);
+            padding: 0.7em 1.5em 0.7em 1.1em;
+            font-size: 1.13rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+            border: none;
+            transition: background 0.18s, box-shadow 0.18s, color 0.18s;
+        }
+        .go-back-btn:hover, .go-back-btn:focus {
+            background: rgba(37,99,235,0.12);
+            color: #1741a6;
+            box-shadow: 0 8px 32px rgba(60,60,120,0.18);
+            text-decoration: none;
+        }
+        @media (max-width: 700px) {
+            .feedback-main-card { padding: 1.2rem 0.3rem; }
+            .user-group-card { padding: 0; }
+            .user-group-header { gap: 0.6rem; padding: 1rem 0.7rem; }
+            .user-avatar-lg { width: 44px; height: 44px; font-size: 1.2rem; }
+            .user-feedback-list { padding: 0.7rem 0.5rem 0.7rem 1.2rem; }
+            .go-back-btn { top: 10px; left: 10px; font-size: 1rem; padding: 0.5em 1em 0.5em 0.8em; }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="go-back-btn" aria-label="Go back to home">
+        <i class="fas fa-arrow-left"></i> Go Back
+    </a>
+    <main class="feedback-main-card">
+        <nav aria-label="Feedback Navigation" class="mb-3"></nav>
+        <div class="feedback-header">
+            <h1>Feedbacks & Responses</h1>
+            <span id="pagination-info" class="text-secondary small"></span>
+        </div>
+        <section aria-label="Feedback List">
+            <div id="feedback-loading-spinner" class="text-center my-3" style="display:none;">
+                <div class="spinner-border text-primary" role="status" aria-label="Loading feedback responses..."></div>
+            </div>
+            <div id="feedback-list" class="user-group-accordion"></div>
+            <div class="sticky-pagination">
+                <button id="load-more-feedback" class="btn btn-primary" style="display:none;" aria-label="Load more feedback">Load More</button>
+            </div>
+        </section>
+    </main>
+    <!-- Add Response Modal (moved outside main for correct stacking) -->
+    <div class="modal fade" id="addResponseModal" tabindex="-1" aria-labelledby="addResponseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content fancy-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addResponseModalLabel">Add Admin Response</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-response-form" autocomplete="off">
+                        <input type="hidden" id="response-feedback-id">
+                        <div class="mb-3">
+                            <label for="response-message" class="form-label">Response Message</label>
+                            <textarea class="form-control" id="response-message" rows="4" required style="font-size:1.08rem;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 py-2" style="font-weight:700;font-size:1.08rem;">Submit Response</button>
+                    </form>
+                    <div id="response-success-msg" class="text-success mt-2" style="display:none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore-compat.js"></script>
+    <!-- Feed Response JS (must come after Firebase scripts) -->
+    <script src="feedResponse.js"></script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

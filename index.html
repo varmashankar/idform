@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta name="google" content="notranslate">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>IDForm</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='description' content='IDForm: Product calculators, description generator, and feedback system.'>
+    <meta name='keywords' content='calculator, feedback, description generator, IDForm'>
+    <meta name='author' content='Your Name'>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <link rel="manifest" href="manifest.json">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css?v=1.1">
+</head>
+
+<body>
+    <div class="layout-row">
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="loading-spinner"></div>
+        </div>
+        
+        <!-- Side Menu Column -->
+        <aside class="sidebar" id="side-menu">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-calculator"></i> IDFORM</h2>
+            </div>
+
+            <div class="sidebar-menu">
+                <div class="menu-section">
+                    <div class="menu-section-label">Calculators</div>
+                    <div class="menu-item active" id="menu-calculator"><a href="#" id="menu-calculator-link"><i
+                                class="fas fa-calculator"></i> <span>Unit Price Calculator</span></a></div>
+                    <div class="menu-item" id="menu-page1"><a href="#" id="menu-page1-link"><i class="fas fa-bell"></i>
+                            <span>Belpromo Calculator</span></a></div>
+                    <div class="menu-item" id="menu-page2"><a href="#" id="menu-page2-link"><i class="fas fa-star"></i>
+                            <span>Goldstar Calculator</span></a></div>
+                    <div class="menu-item" id="menu-page3"><a href="#" id="menu-page3-link"><i
+                                class="fas fa-pen-alt"></i> <span>Description Generator</span></a></div>
+                </div>
+
+                <div class="menu-section">
+                    <div class="menu-section-label">Feedback</div>
+                    <div class="menu-item"><a href="feedback.html" class="sidebar-feedback-link"><i
+                                class="fas fa-comment-dots"></i> <span>My Feedback</span></a></div>
+                </div>
+                <p class="sidebar-visit-count">Total Visits: <span class="visit-count" id="visitCount">1,245</span></p>
+            </div>
+
+            <div class="sidebar-footer">
+                <!-- <p>Use the below link to submit your feedback, requests, and messages.</p> -->
+                <button class="username-btn" id="open-username-modal-btn">
+                    <span id="username-btn-text">Set Username</span>
+                </button>
+                <button class="feedback-btn" id="open-modal-btn">
+                    <i class="fas fa-comment-dots me-2"></i> Give Feedback
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="hamburger-menu" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Main Content -->
+        <main class="main-content p-0">
+            <!-- Unit Price Calculator -->
+            <section class="content-section active" style="width: 110vw;" id="all-calculators">
+                <div class="section-header">
+                    <h2>Product Price Calculator</h2>
+                    <p>Use Below code to calculate the pricing: (P, Q, R, S, T, U, V, W, X, Y, Z)</p>
+                </div>
+
+                <form class="calculator-form" id="pricingCalculator">
+                    <div class="form-group">
+                        <label for="unitPriceAlpha">Unit Price</label>
+                        <input type="number" id="unitPriceAlpha" class="form-control autofocusFirst"
+                            placeholder="Enter unit price" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="codeAlpha">Alphabet Code</label>
+                        <input type="text" id="codeAlpha" class="form-control" placeholder="Enter code (P-Z)"
+                            maxlength="1" pattern="[P-Zp-z]" required>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                        <button type="button" class="btn btn-secondary" id="clearAlpha"
+                            onclick="clearFormAlpha()">Clear</button>
+                    </div>
+                </form>
+
+                <div class="result-container">
+                    <div class="result-header">
+                        <h3>Calculation Result</h3>
+                        <button class="copy-btn" id="copyAlpha">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div class="result-content" id="resultAlpha"></div>
+                    <div class="copied-message" id="copiedAlpha">Copied to clipboard!</div>
+                </div>
+            </section>
+
+            <!-- Belpromo Calculator -->
+            <section class="content-section" style="width: 100vw;" id="page1-content">
+                <div class="section-header">
+                    <h2>Belpromo Pricing Calculator</h2>
+                    <p>Calculate Belpromo Factory Pricing</p>
+                </div>
+
+                <form class="calculator-form" id="belpricingCalculator">
+                    <div class="form-group">
+                        <label for="unitPriceBel">Unit Price</label>
+                        <input type="number" id="unitPriceBel" class="form-control autofocusFirst"
+                            placeholder="Enter unit price" step="0.01" required>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                        <button type="button" class="btn btn-secondary" id="clearBel"
+                            onclick="clearFormBel()">Clear</button>
+                    </div>
+                </form>
+
+                <div class="result-container">
+                    <div class="result-header">
+                        <h3>Calculation Result</h3>
+                        <button class="copy-btn" id="copyBel">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div class="result-content" id="resultBel"></div>
+                    <div class="copied-message" id="copiedBel">Copied to clipboard!</div>
+                </div>
+            </section>
+
+            <!-- Goldstar Calculator -->
+            <section class="content-section" style="width: 110vw;" id="page2-content">
+                <div class="section-header">
+                    <h2>Goldstar Pricing Calculator</h2>
+                    <p>Calculate Goldstar Factory Pricing</p>
+                </div>
+
+                <form class="calculator-form" id="goldpricingCalculator">
+                    <div class="form-group">
+                        <label for="unitPriceGol">Unit Price</label>
+                        <input type="number" id="unitPriceGol" class="form-control autofocusFirst"
+                            placeholder="Enter unit price" step="0.01" required>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                        <button type="button" class="btn btn-secondary" id="clearGol"
+                            onclick="clearFormGol()">Clear</button>
+                    </div>
+                </form>
+
+                <div class="result-container">
+                    <div class="result-header">
+                        <h3>Calculation Result</h3>
+                        <button class="copy-btn" id="copyGol">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div class="result-content" id="resultGol"></div>
+                    <div class="copied-message" id="copiedGol">Copied to clipboard!</div>
+                </div>
+            </section>
+
+            <!-- Description Generator -->
+            <section class="content-section" style="width: 110vw;" id="page3-content">
+                <div class="section-header">
+                    <h2>Description Generator</h2>
+                    <p>Please provide the details to generate the description</p>
+                </div>
+
+                <div class="description-output-container">
+                    <input type="text" class="description-output" id="generateDesc" readonly
+                        placeholder="Description will be generated here. Just Copy & Paste" />
+                    <div class="result-header">
+                        <button class="copy-btn" id="copyDesc">
+                            <i class="fas fa-copy"></i> Copy Description
+                        </button>
+                    </div>
+                    <div class="copied-message" id="copiedDesc">Copied to clipboard!</div>
+                </div>
+
+                <form class="calculator-form" id="descGenerator">
+                    <div class="form-group">
+                        <label for="itemCode">Factory Item Code</label>
+                        <input type="text" id="itemCode" class="form-control autofocusFirst"
+                            placeholder="Add Goldstar Website Item Description" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="materialColor">Material and Imprint Color</label>
+                        <div class="input-group">
+                            <input type="text" id="materialColor" class="form-control" placeholder="Material Color"
+                                required>
+                            <input type="text" id="imprintColor" class="form-control" placeholder="Imprint Color"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="radio" id="optionalItem1" name="optionalItems" value="Both Side Imprint"
+                                class="form-check-input">
+                            <label for="optionalItem1" class="form-check-label">Both Side Imprint - Same Art</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" id="optionalItem2" name="optionalItems"
+                                value="Both Side Different Imprint" class="form-check-input">
+                            <label for="optionalItem2" class="form-check-label">Both Side Imprint - Different
+                                Art</label>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">Generate</button>
+                        <button type="button" class="btn btn-secondary" id="clearDesc"
+                            onclick="clearForm()">Clear</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <!-- Feedback Modal -->
+        <div class="modal" id="feedback-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>We Value Your Feedback</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="feedback-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control"
+                                placeholder="Your feedback, request, or message..." maxlength="500" required></textarea>
+                            <div class="char-count"><span id="feedback-char-count">0</span></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width:100%; padding: 0.9rem;">Submit
+                            Feedback</button>
+                    </form>
+                    <div id="response-message" class="response-message mt-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Username Setting Modal -->
+        <div id="username-modal" class="modal" tabindex="-1" role="dialog" aria-modal="true"
+            aria-labelledby="username-modal-title" style="display:none;">
+            <div class="modal-dialog username-modal-dialog">
+                <div class="modal-content position-relative">
+                    <button class="close-btn username-close-x-btn" aria-label="Close">&times;</button>
+                    <div class="modal-header flex-column align-items-center border-0 pb-0">
+                        <div class="username-icon mb-2 d-flex align-items-center justify-content-center">
+                            <span class="username-icon-bg d-inline-flex align-items-center justify-content-center">
+                                <i class="fas fa-user-circle"></i>
+                            </span>
+                        </div>
+                        <h4 class="modal-title w-100 text-center" id="username-modal-title">Set Your Username</h4>
+                    </div>
+                    <div class="modal-body text-center pt-2">
+                        <p>Set a username to help identify you across different browsers and sessions.</p>
+                        <form id="username-form" class="mt-3">
+                            <div class="form-group">
+                                <label for="username-input" class="form-label">Username</label>
+                                <input type="text" id="username-input" class="form-control" 
+                                       placeholder="Enter your username" maxlength="20" required>
+                                <div class="form-text">This will be used to identify you in the system.</div>
+                            </div>
+                            <div class="current-username-info mt-3" id="current-username-info" style="display:none;">
+                                <p class="text-muted"><small>Current username: <span id="current-username-display"></span></small></p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row g-2 justify-content-center mt-2 mb-2 username-modal-btn-row">
+                        <div class="col-12 col-md-6 d-flex justify-content-center">
+                            <button id="username-save-btn" class="btn btn-primary px-4">Save Username</button>
+                        </div>
+                        <div class="col-12 col-md-6 d-flex justify-content-center">
+                            <button id="username-clear-btn" class="btn btn-secondary px-4">Clear Username</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- One-time Greeting Modal -->
+        <div id="greeting-modal" class="modal" tabindex="-1" role="alertdialog" aria-modal="true"
+            aria-labelledby="greeting-modal-title" aria-live="assertive" style="display:none;">
+            <div class="modal-dialog greeting-modal-dialog">
+                <div class="modal-content position-relative">
+                    <button id="greeting-close-x"
+                        class="btn btn-link position-absolute top-0 end-0 mt-2 me-2 p-0 greeting-close-x-btn"
+                        aria-label="Close">&times;</button>
+                    <div class="modal-header flex-column align-items-center border-0 pb-0">
+                        <div class="greeting-icon mb-2 d-flex align-items-center justify-content-center">
+                            <span class="greeting-icon-bg d-inline-flex align-items-center justify-content-center"><span
+                                    class="wave-emoji" aria-hidden="true">👋</span></span>
+                        </div>
+                        <h4 class="modal-title w-100 text-center" id="greeting-modal-title">Welcome to IDFORM!</h4>
+                    </div>
+                    <div class="modal-body text-center pt-2">
+                        <p>Thank you for visiting.<br>Explore calculators and tools on the left menu.</p>
+                        <a href="learn-more.html" id="greeting-learn-more-btn"
+                            class="greeting-learn-more-btn d-inline-flex align-items-center gap-2 my-3" target="_blank"
+                            rel="noopener" aria-label="Learn more about IDFORM"><i class="fas fa-info-circle"></i> Learn
+                            More</a>
+                        <!-- <hr class="greeting-divider my-3" />
+                    <ul class="greeting-feature-list text-start me-auto" style="font-size:0.85rem;">
+                        <li>🧮 Product Price Calculators (Unit, Belpromo, Goldstar)</li>
+                        <li>📝 Description Generator</li>
+                        <li>💬 Feedback & Admin Responses</li>
+                        <li>📋 One-click Copy for Results</li>
+                        <li>🌙 Responsive & Accessible Design</li>
+                    </ul> -->
+                    </div>
+                    <div class="row g-2 justify-content-center mt-2 mb-2 greeting-modal-btn-row">
+                        <div class="col-12 col-md-6 d-flex justify-content-center">
+                            <button id="greeting-close-btn" class="btn btn-primary px-4">Get Started</button>
+                        </div>
+                        <div class="col-12 col-md-6 d-flex justify-content-center">
+                            <button id="greeting-feedback-btn" class="btn btn-success px-4"><i
+                                    class="fas fa-comment-dots me-2"></i>Feedback</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+        <!-- Firebase Firestore -->
+        <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore-compat.js"></script>
+        <!-- Your main JS (must come after Firebase scripts) -->
+        <script type="text/javascript" src="main.js"></script>
+        <!-- Include Bootstrap JS (Optional) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- Service Worker Registration -->
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(registration => {
+                            console.log('Service Worker registered successfully:', registration.scope);
+                        })
+                        .catch(error => {
+                            console.error('Service Worker registration failed:', error);
+                        });
+                });
+            }
+        </script>
+</body>
+
+</html>

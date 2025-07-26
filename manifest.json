@@ -1,0 +1,79 @@
+{
+    "name": "IDForm - Product Calculators & Feedback System",
+    "short_name": "IDForm",
+    "description": "Product price calculators, description generator, and feedback system with real-time notifications",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#f8f9fc",
+    "theme_color": "#4361ee",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "en",
+    "categories": ["productivity", "business", "utilities"],
+    "icons": [
+        {
+            "src": "/favicon_io/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/favicon_io/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/favicon_io/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon_io/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Unit Price Calculator",
+            "short_name": "Calculator",
+            "description": "Calculate product pricing",
+            "url": "/index.html#all-calculators",
+            "icons": [
+                {
+                    "src": "/favicon_io/favicon-32x32.png",
+                    "sizes": "32x32"
+                }
+            ]
+        },
+        {
+            "name": "My Feedback",
+            "short_name": "Feedback",
+            "description": "View feedback and responses",
+            "url": "/feedback.html",
+            "icons": [
+                {
+                    "src": "/favicon_io/favicon-32x32.png",
+                    "sizes": "32x32"
+                }
+            ]
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/img/screenshot-desktop.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "IDForm Desktop Interface"
+        },
+        {
+            "src": "/img/screenshot-mobile.png",
+            "sizes": "390x844",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "IDForm Mobile Interface"
+        }
+    ]
+} 

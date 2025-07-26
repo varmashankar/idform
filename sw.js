@@ -5,16 +5,15 @@ const DYNAMIC_CACHE = 'idform-dynamic-v1.0.0';
 
 // Files to cache immediately
 const STATIC_FILES = [
-    '/',
-    '/index.html',
-    '/feedback.html',
-    '/learn-more.html',
-    '/main.js',
-    '/style.css',
-    '/feedback.js',
-    '/feedback.css',
-    '/admin/feedResponse.html',
-    '/admin/feedResponse.js',
+    'index.html',
+    'feedback.html',
+    'learn-more.html',
+    'main.js',
+    'style.css',
+    'feedback.js',
+    'feedback.css',
+    'admin/feedResponse.html',
+    'admin/feedResponse.js',
     'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css',
     'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'

@@ -1744,7 +1744,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (codeInput in codeToPercentage) {
                     const percentage = codeToPercentage[codeInput];
                     const pricing = (percentage / 100) * unitPrice;
-                    resultElement.textContent = `$ ${pricing.toFixed(3)}`;
+                    resultElement.textContent = `${pricing.toFixed(3)}`;
                 } else {
                     resultElement.textContent = "Invalid code. Please enter a valid code (P-Z).";
                 }
@@ -1768,7 +1768,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const unitPriceBel = parseFloat(unitPriceElement.value);
                 const resultBel = (0.60 * unitPriceBel) - (0.10 * (0.60 * unitPriceBel));
-                resultElement.textContent = `Result: $${resultBel.toFixed(4)}`;
+                resultElement.textContent = `${resultBel.toFixed(4)}`;
                 resultElement.style.display = "block";
             });
         }
@@ -1789,7 +1789,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const unitPriceGol = parseFloat(unitPriceElement.value);
                 const resultGol = (0.60 * unitPriceGol) - (0.05 * (unitPriceGol * 0.6));
-                resultElement.textContent = `Result: $${resultGol.toFixed(4)}`;
+                resultElement.textContent = `${resultGol.toFixed(4)}`;
                 resultElement.style.display = "block";
             });
         }

@@ -89,8 +89,20 @@
 
                 <form class="calculator-form" id="pricingCalculator">
                     <div class="form-group">
-                        <label for="unitPriceAlpha">Unit Price</label>
-                        <input type="number" id="unitPriceAlpha" class="form-control autofocusFirst"
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" class="form-control autofocusFirst"
+                            placeholder="Enter quantity" step="1" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unitPrice">Unit Price</label>
+                        <input type="number" id="unitPrice" class="form-control"
+                            placeholder="Enter unit price" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unitPriceAlpha">Unit Price Alpha</label>
+                        <input type="number" id="unitPriceAlpha" class="form-control"
                             placeholder="Enter unit price" step="0.01" required>
                     </div>
 
@@ -117,6 +129,20 @@
                     <div class="result-content" id="resultAlpha"></div>
                     <div class="copied-message" id="copiedAlpha">Copied to clipboard!</div>
                 </div>
+
+                <!-- Result display for main calculator -->
+                <div class="result-container" style="margin-top: 20px;">
+                    <div class="result-header">
+                        <h3>Total Price Result</h3>
+                        <button class="copy-btn" id="copyResult">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div class="result-content">
+                        <input type="text" id="result" class="form-control" readonly>
+                    </div>
+                    <div class="copied-message" id="copiedResult">Copied to clipboard!</div>
+                </div>
             </section>
 
             <!-- Belpromo Calculator -->
@@ -128,8 +154,20 @@
 
                 <form class="calculator-form" id="belpricingCalculator">
                     <div class="form-group">
-                        <label for="unitPriceBel">Unit Price</label>
-                        <input type="number" id="unitPriceBel" class="form-control autofocusFirst"
+                        <label for="belQuantity">Quantity</label>
+                        <input type="number" id="belQuantity" class="form-control autofocusFirst"
+                            placeholder="Enter quantity" step="1" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="belUnitPrice">Unit Price</label>
+                        <input type="number" id="belUnitPrice" class="form-control"
+                            placeholder="Enter unit price" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unitPriceBel">Unit Price Bel</label>
+                        <input type="number" id="unitPriceBel" class="form-control"
                             placeholder="Enter unit price" step="0.01" required>
                     </div>
 
@@ -150,6 +188,20 @@
                     <div class="result-content" id="resultBel"></div>
                     <div class="copied-message" id="copiedBel">Copied to clipboard!</div>
                 </div>
+
+                <!-- Result display for BelPromo calculator -->
+                <div class="result-container" style="margin-top: 20px;">
+                    <div class="result-header">
+                        <h3>Total Price Result</h3>
+                        <button class="copy-btn" id="copyBelResult">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div class="result-content">
+                        <input type="text" id="belResult" class="form-control" readonly>
+                    </div>
+                    <div class="copied-message" id="copiedBelResult">Copied to clipboard!</div>
+                </div>
             </section>
 
             <!-- Goldstar Calculator -->
@@ -161,8 +213,20 @@
 
                 <form class="calculator-form" id="goldpricingCalculator">
                     <div class="form-group">
-                        <label for="unitPriceGol">Unit Price</label>
-                        <input type="number" id="unitPriceGol" class="form-control autofocusFirst"
+                        <label for="goldQuantity">Quantity</label>
+                        <input type="number" id="goldQuantity" class="form-control autofocusFirst"
+                            placeholder="Enter quantity" step="1" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goldUnitPrice">Unit Price</label>
+                        <input type="number" id="goldUnitPrice" class="form-control"
+                            placeholder="Enter unit price" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unitPriceGol">Unit Price Gold</label>
+                        <input type="number" id="unitPriceGol" class="form-control"
                             placeholder="Enter unit price" step="0.01" required>
                     </div>
 
@@ -182,6 +246,20 @@
                     </div>
                     <div class="result-content" id="resultGol"></div>
                     <div class="copied-message" id="copiedGol">Copied to clipboard!</div>
+                </div>
+
+                <!-- Result display for Goldstar calculator -->
+                <div class="result-container" style="margin-top: 20px;">
+                    <div class="result-header">
+                        <h3>Total Price Result</h3>
+                        <button class="copy-btn" id="copyGoldResult">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div class="result-content">
+                        <input type="text" id="goldResult" class="form-control" readonly>
+                    </div>
+                    <div class="copied-message" id="copiedGoldResult">Copied to clipboard!</div>
                 </div>
             </section>
 
@@ -212,12 +290,34 @@
 
                     <div class="form-group">
                         <label for="materialColor">Material and Imprint Color</label>
-                        <div class="input-group">
-                            <input type="text" id="materialColor" class="form-control" placeholder="Material Color"
-                                required>
-                            <input type="text" id="imprintColor" class="form-control" placeholder="Imprint Color"
-                                required>
+                        <div class="color-options-container">
+                            <div class="color-option" data-color="White" onclick="selectColorOption(this)">
+                                <div class="color-box white"></div>
+                                <span class="color-label">White</span>
+                            </div>
+                            <div class="color-option" data-color="Black" onclick="selectColorOption(this)">
+                                <div class="color-box black"></div>
+                                <span class="color-label">Black</span>
+                            </div>
+                            <div class="color-option" data-color="Red" onclick="selectColorOption(this)">
+                                <div class="color-box red"></div>
+                                <span class="color-label">Red</span>
+                            </div>
+                            <div class="color-option" data-color="Blue" onclick="selectColorOption(this)">
+                                <div class="color-box blue"></div>
+                                <span class="color-label">Blue</span>
+                            </div>
+                            <div class="color-option" data-color="Green" onclick="selectColorOption(this)">
+                                <div class="color-box green"></div>
+                                <span class="color-label">Green</span>
+                            </div>
+                            <div class="color-option" data-color="Yellow" onclick="selectColorOption(this)">
+                                <div class="color-box yellow"></div>
+                                <span class="color-label">Yellow</span>
+                            </div>
                         </div>
+                        <input type="hidden" id="materialColor" value="">
+                        <input type="hidden" id="imprintColor" value="">
                     </div>
 
                     <div class="form-group">

@@ -1717,16 +1717,24 @@ if (pricingCalculator) {
     pricingCalculator.addEventListener("submit", function (event) {
         event.preventDefault();
         
+        const quantityElement = document.getElementById('quantity');
+        const unitPriceElement = document.getElementById('unitPrice');
+        
+        if (!quantityElement || !unitPriceElement) {
+            console.error('Required form elements not found');
+            return;
+        }
+        
         PerformanceMonitor.trackInteraction('calculator_submit', {
             calculator: 'alpha',
             formData: {
-                quantity: document.getElementById('quantity').value,
-                unitPrice: document.getElementById('unitPrice').value
+                quantity: quantityElement.value,
+                unitPrice: unitPriceElement.value
             }
         });
         
-        const quantity = parseFloat(document.getElementById('quantity').value);
-        const unitPrice = parseFloat(document.getElementById('unitPrice').value);
+        const quantity = parseFloat(quantityElement.value);
+        const unitPrice = parseFloat(unitPriceElement.value);
         
         if (isNaN(quantity) || isNaN(unitPrice)) {
             PerformanceMonitor.trackError(new Error('Invalid input values'), 'alpha_calculator');
@@ -1735,16 +1743,21 @@ if (pricingCalculator) {
         }
         
         const totalPrice = quantity * unitPrice;
-        document.getElementById('result').value = totalPrice.toFixed(2);
+        const resultElement = document.getElementById('result');
+        if (resultElement) {
+            resultElement.value = totalPrice.toFixed(2);
+        } else {
+            console.error('Result element not found');
+        }
         
         PerformanceMonitor.trackFeatureUsage('alpha_calculator', true);
         showCopyBtnIfResult();
     });
 }
 function clearFormAlpha() {
-    unitPriceAlpha.value = "";
-    codeAlpha.value = "";
-    resultAlpha.style.display = "none";
+    if (unitPriceAlpha) unitPriceAlpha.value = "";
+    if (codeAlpha) codeAlpha.value = "";
+    if (resultAlpha) resultAlpha.style.display = "none";
 }
 
 // =========================
@@ -1758,16 +1771,24 @@ if (belpricingCalculator) {
     belpricingCalculator.addEventListener("submit", function (event) {
         event.preventDefault();
         
+        const belQuantityElement = document.getElementById('belQuantity');
+        const belUnitPriceElement = document.getElementById('belUnitPrice');
+        
+        if (!belQuantityElement || !belUnitPriceElement) {
+            console.error('Required BelPromo form elements not found');
+            return;
+        }
+        
         PerformanceMonitor.trackInteraction('calculator_submit', {
             calculator: 'beta',
             formData: {
-                quantity: document.getElementById('belQuantity').value,
-                unitPrice: document.getElementById('belUnitPrice').value
+                quantity: belQuantityElement.value,
+                unitPrice: belUnitPriceElement.value
             }
         });
         
-        const quantity = parseFloat(document.getElementById('belQuantity').value);
-        const unitPrice = parseFloat(document.getElementById('belUnitPrice').value);
+        const quantity = parseFloat(belQuantityElement.value);
+        const unitPrice = parseFloat(belUnitPriceElement.value);
         
         if (isNaN(quantity) || isNaN(unitPrice)) {
             PerformanceMonitor.trackError(new Error('Invalid input values'), 'beta_calculator');
@@ -1776,15 +1797,20 @@ if (belpricingCalculator) {
         }
         
         const totalPrice = quantity * unitPrice;
-        document.getElementById('belResult').value = totalPrice.toFixed(2);
+        const belResultElement = document.getElementById('belResult');
+        if (belResultElement) {
+            belResultElement.value = totalPrice.toFixed(2);
+        } else {
+            console.error('BelPromo result element not found');
+        }
         
         PerformanceMonitor.trackFeatureUsage('beta_calculator', true);
         showCopyBtnIfResult();
     });
 }
 function clearFormBel() {
-    unitPriceBel.value = "";
-    resultBel.style.display = "none";
+    if (unitPriceBel) unitPriceBel.value = "";
+    if (resultBel) resultBel.style.display = "none";
 }
 
 // =========================
@@ -1798,16 +1824,24 @@ if (goldpricingCalculator) {
     goldpricingCalculator.addEventListener("submit", function (event) {
         event.preventDefault();
         
+        const goldQuantityElement = document.getElementById('goldQuantity');
+        const goldUnitPriceElement = document.getElementById('goldUnitPrice');
+        
+        if (!goldQuantityElement || !goldUnitPriceElement) {
+            console.error('Required Goldstar form elements not found');
+            return;
+        }
+        
         PerformanceMonitor.trackInteraction('calculator_submit', {
             calculator: 'gamma',
             formData: {
-                quantity: document.getElementById('goldQuantity').value,
-                unitPrice: document.getElementById('goldUnitPrice').value
+                quantity: goldQuantityElement.value,
+                unitPrice: goldUnitPriceElement.value
             }
         });
         
-        const quantity = parseFloat(document.getElementById('goldQuantity').value);
-        const unitPrice = parseFloat(document.getElementById('goldUnitPrice').value);
+        const quantity = parseFloat(goldQuantityElement.value);
+        const unitPrice = parseFloat(goldUnitPriceElement.value);
         
         if (isNaN(quantity) || isNaN(unitPrice)) {
             PerformanceMonitor.trackError(new Error('Invalid input values'), 'gamma_calculator');
@@ -1816,15 +1850,20 @@ if (goldpricingCalculator) {
         }
         
         const totalPrice = quantity * unitPrice;
-        document.getElementById('goldResult').value = totalPrice.toFixed(2);
+        const goldResultElement = document.getElementById('goldResult');
+        if (goldResultElement) {
+            goldResultElement.value = totalPrice.toFixed(2);
+        } else {
+            console.error('Goldstar result element not found');
+        }
         
         PerformanceMonitor.trackFeatureUsage('gamma_calculator', true);
         showCopyBtnIfResult();
     });
 }
 function clearFormGol() {
-    unitPriceGol.value = "";
-    resultGol.style.display = "none";
+    if (unitPriceGol) unitPriceGol.value = "";
+    if (resultGol) resultGol.style.display = "none";
 }
 
 // =========================
@@ -1892,10 +1931,14 @@ function generateDescription() {
     }
 }
 function clearForm() {
-    itemCode.value = '';
-    materialColor.value = '';
-    imprintColor.value = '';
-    generateDesc.value = '';
+    if (itemCode) itemCode.value = '';
+    if (materialColor) materialColor.value = '';
+    if (imprintColor) imprintColor.value = '';
+    if (generateDesc) generateDesc.value = '';
+    
+    // Clear color selection
+    const allColorOptions = document.querySelectorAll('.color-option');
+    allColorOptions.forEach(option => option.classList.remove('selected'));
 }
 
 // =========================
@@ -2597,4 +2640,34 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('beforeunload', () => {
     PerformanceMonitor.saveMetrics();
 });
-});
+
+// =========================
+// Section: Description Generator Color Selection
+// =========================
+
+function selectColorOption(element) {
+    // Remove selected class from all color options
+    const allColorOptions = document.querySelectorAll('.color-option');
+    allColorOptions.forEach(option => option.classList.remove('selected'));
+    
+    // Add selected class to clicked option
+    element.classList.add('selected');
+    
+    // Update hidden input values
+    const selectedColor = element.getAttribute('data-color');
+    const materialColorInput = document.getElementById('materialColor');
+    const imprintColorInput = document.getElementById('imprintColor');
+    
+    if (materialColorInput && imprintColorInput) {
+        materialColorInput.value = selectedColor;
+        imprintColorInput.value = selectedColor;
+    }
+    
+    // Track the interaction
+    if (window.PerformanceMonitor) {
+        PerformanceMonitor.trackInteraction('color_selection', {
+            color: selectedColor,
+            context: 'description_generator'
+        });
+    }
+}

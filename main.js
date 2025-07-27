@@ -1726,6 +1726,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const unitPriceElement = document.getElementById("unitPriceAlpha");
                 const codeElement = document.getElementById("codeAlpha");
                 const resultElement = document.getElementById("resultAlpha");
+                const stepsElement = document.getElementById("stepsAlpha");
+                const showStepsCheckbox = document.getElementById("showStepsAlpha");
+
 
                 // Verify that all elements were found before using them
                 if (!unitPriceElement || !codeElement || !resultElement) {
@@ -1744,79 +1747,207 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (codeInput in codeToPercentage) {
                     const percentage = codeToPercentage[codeInput];
                     const pricing = (percentage / 100) * unitPrice;
-                    resultElement.textContent = `${pricing.toFixed(3)}`;
+                    resultElement.value = `${pricing.toFixed(3)}`;
+                    
+                    // Always store the calculation steps
+                    const steps = `1. Find percentage for code '${codeInput.toUpperCase()}': ${percentage}%\n` +
+                        `2. Calculate result: (${percentage} / 100) * ${unitPrice}\n` +
+                        `3. Final Price: $${pricing.toFixed(3)}`;
+                    stepsElement.textContent = steps;
+                    
+                    if (showStepsCheckbox.checked) {
+                        stepsElement.classList.add('show');
+                        stepsElement.classList.remove('placeholder');
+                    } else {
+                        stepsElement.classList.remove('show');
+                    }
                 } else {
-                    resultElement.textContent = "Invalid code. Please enter a valid code (P-Z).";
+                    resultElement.value = "Invalid code. Please enter a valid code (P-Z).";
+                    stepsElement.textContent = "";
+                    stepsElement.classList.remove('show', 'placeholder');
+                    showStepsCheckbox.checked = false;
                 }
                 resultElement.style.display = "block"; // Show the result area
+                // RELIABLE SELECTION LOGIC
+            resultElement.focus();
+            resultElement.setSelectionRange(0, resultElement.value.length);
             });
         }
 
-        // --- Belpromo Calculator ---
-        const belpricingCalculator = document.getElementById("belpricingCalculator");
-        if (belpricingCalculator) {
-            belpricingCalculator.addEventListener("submit", function (event) {
-                event.preventDefault();
+        // Belpromo Calculator
+const belpricingCalculator = document.getElementById("belpricingCalculator");
+if (belpricingCalculator) {
+    belpricingCalculator.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-                const unitPriceElement = document.getElementById("unitPriceBel");
-                const resultElement = document.getElementById("resultBel");
+        const unitPriceElement = document.getElementById("unitPriceBel");
+        const resultElement = document.getElementById("resultBel");
+        const stepsElement = document.getElementById("stepsBel");
+        const showStepsCheckbox = document.getElementById("showStepsBel");
 
-                if (!unitPriceElement || !resultElement) {
-                    console.error("Critical Error: Belpromo Calculator elements not found in the DOM.");
-                    return;
-                }
+        if (!unitPriceElement || !resultElement) return;
 
-                const unitPriceBel = parseFloat(unitPriceElement.value);
-                const resultBel = (0.60 * unitPriceBel) - (0.10 * (0.60 * unitPriceBel));
-                resultElement.textContent = `${resultBel.toFixed(4)}`;
-                resultElement.style.display = "block";
-            });
+        const unitPriceBel = parseFloat(unitPriceElement.value);
+        
+        // Calculate intermediate values
+        const part1 = 0.60 * unitPriceBel;
+        const discount = 0.10 * part1;
+        const resultBel = part1 - discount;
+
+        resultElement.value = `${resultBel.toFixed(4)}`;
+        
+        // Always store the calculation steps
+        const steps = `1. Calculate 60% of Unit Price: 0.60 * ${unitPriceBel} = ${part1.toFixed(4)}\n` +
+                      `2. Calculate 10% discount: 0.10 * ${part1.toFixed(4)} = ${discount.toFixed(4)}\n` +
+                      `3. Subtract discount: ${part1.toFixed(4)} - ${discount.toFixed(4)} = ${resultBel.toFixed(4)}`;
+        stepsElement.textContent = steps;
+        
+        if (showStepsCheckbox.checked) {
+            stepsElement.classList.add('show');
+            stepsElement.classList.remove('placeholder');
+        } else {
+            stepsElement.classList.remove('show');
         }
+        resultElement.style.display = "block";
+    });
+}
 
-        // --- Goldstar Calculator ---
-        const goldpricingCalculator = document.getElementById("goldpricingCalculator");
-        if (goldpricingCalculator) {
-            goldpricingCalculator.addEventListener("submit", function (event) {
-                event.preventDefault();
+        // Goldstar Calculator
+const goldpricingCalculator = document.getElementById("goldpricingCalculator");
+if (goldpricingCalculator) {
+    goldpricingCalculator.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-                const unitPriceElement = document.getElementById("unitPriceGol");
-                const resultElement = document.getElementById("resultGol");
+        const unitPriceElement = document.getElementById("unitPriceGol");
+        const resultElement = document.getElementById("resultGol");
+        // FIXED: Use correct Goldstar elements
+        const stepsElement = document.getElementById("stepsGol");
+        const showStepsCheckbox = document.getElementById("showStepsGol");
 
-                if (!unitPriceElement || !resultElement) {
-                    console.error("Critical Error: Goldstar Calculator elements not found in the DOM.");
-                    return;
-                }
+        if (!unitPriceElement || !resultElement) return;
 
-                const unitPriceGol = parseFloat(unitPriceElement.value);
-                const resultGol = (0.60 * unitPriceGol) - (0.05 * (unitPriceGol * 0.6));
-                resultElement.textContent = `${resultGol.toFixed(4)}`;
-                resultElement.style.display = "block";
-            });
+        const unitPriceGol = parseFloat(unitPriceElement.value);
+        
+        // Calculate intermediate values
+        const part1 = 0.60 * unitPriceGol;
+        const discount = 0.05 * part1;
+        const resultGol = part1 - discount;
+
+        resultElement.value = `${resultGol.toFixed(4)}`;
+        
+        // Always store the calculation steps
+        const steps = `1. Calculate 60% of Unit Price: 0.60 * ${unitPriceGol} = ${part1.toFixed(4)}\n` +
+                      `2. Calculate 5% discount: 0.05 * ${part1.toFixed(4)} = ${discount.toFixed(4)}\n` +
+                      `3. Subtract discount: ${part1.toFixed(4)} - ${discount.toFixed(4)} = ${resultGol.toFixed(4)}`;
+        stepsElement.textContent = steps;
+        
+        if (showStepsCheckbox.checked) {
+            stepsElement.classList.add('show');
+            stepsElement.classList.remove('placeholder');
+        } else {
+            stepsElement.classList.remove('show');
         }
+        resultElement.style.display = "block";
+    });
+}
 
         // --- Connect the "Clear" Buttons to their functions ---
         document.getElementById('clearAlpha').addEventListener('click', clearFormAlpha);
         document.getElementById('clearBel').addEventListener('click', clearFormBel);
         document.getElementById('clearGol').addEventListener('click', clearFormGol);
 
+        // --- Connect the "Show Steps" Checkboxes ---
+        const showStepsAlpha = document.getElementById('showStepsAlpha');
+        const showStepsBel = document.getElementById('showStepsBel');
+        const showStepsGol = document.getElementById('showStepsGol');
+
+        if (showStepsAlpha) {
+            showStepsAlpha.addEventListener('change', function() {
+                const stepsElement = document.getElementById('stepsAlpha');
+                if (stepsElement) {
+                    if (this.checked) {
+                        const content = stepsElement.textContent.trim();
+                        if (content && content !== "Perform a calculation first to see the steps.") {
+                            stepsElement.classList.add('show');
+                            stepsElement.classList.remove('placeholder');
+                        } else {
+                            stepsElement.textContent = "Perform a calculation first to see the steps.";
+                            stepsElement.classList.add('show', 'placeholder');
+                        }
+                    } else {
+                        stepsElement.classList.remove('show');
+                    }
+                }
+            });
+        }
+
+        if (showStepsBel) {
+            showStepsBel.addEventListener('change', function() {
+                const stepsElement = document.getElementById('stepsBel');
+                if (stepsElement) {
+                    if (this.checked) {
+                        const content = stepsElement.textContent.trim();
+                        if (content && content !== "Perform a calculation first to see the steps.") {
+                            stepsElement.classList.add('show');
+                            stepsElement.classList.remove('placeholder');
+                        } else {
+                            stepsElement.textContent = "Perform a calculation first to see the steps.";
+                            stepsElement.classList.add('show', 'placeholder');
+                        }
+                    } else {
+                        stepsElement.classList.remove('show');
+                    }
+                }
+            });
+        }
+
+        if (showStepsGol) {
+            showStepsGol.addEventListener('change', function() {
+                const stepsElement = document.getElementById('stepsGol');
+                if (stepsElement) {
+                    if (this.checked) {
+                        const content = stepsElement.textContent.trim();
+                        if (content && content !== "Perform a calculation first to see the steps.") {
+                            stepsElement.classList.add('show');
+                            stepsElement.classList.remove('placeholder');
+                        } else {
+                            stepsElement.textContent = "Perform a calculation first to see the steps.";
+                            stepsElement.classList.add('show', 'placeholder');
+                        }
+                    } else {
+                        stepsElement.classList.remove('show');
+                    }
+                }
+            });
+        }
+
         console.log('Calculators initialized successfully.');
     }
 
     // These functions clear the forms
     function clearFormAlpha() {
-        document.getElementById("pricingCalculator").reset();
-        document.getElementById("resultAlpha").style.display = "none";
-    }
+    document.getElementById("pricingCalculator").reset();
+    document.getElementById("resultAlpha").style.display = "none";
+    document.getElementById("stepsAlpha").classList.remove('show', 'placeholder');
+    document.getElementById("stepsAlpha").textContent = "";
+    document.getElementById("showStepsAlpha").checked = false;
+}
 
-    function clearFormBel() {
-        document.getElementById("belpricingCalculator").reset();
-        document.getElementById("resultBel").style.display = "none";
-    }
+function clearFormBel() {
+    document.getElementById("belpricingCalculator").reset();
+    document.getElementById("resultBel").style.display = "none";
+    document.getElementById("stepsBel").classList.remove('show', 'placeholder');
+    document.getElementById("stepsBel").textContent = "";
+    document.getElementById("showStepsBel").checked = false;
+}
 
-    function clearFormGol() {
-        document.getElementById("goldpricingCalculator").reset();
-        document.getElementById("resultGol").style.display = "none";
-    }
+function clearFormGol() {
+    document.getElementById("goldpricingCalculator").reset();
+    document.getElementById("resultGol").style.display = "none";
+    document.getElementById("stepsGol").classList.remove('show', 'placeholder');
+    document.getElementById("stepsGol").textContent = "";
+    document.getElementById("showStepsGol").checked = false;
+}
 
     // =========================
     // Section: Description Generator
@@ -1874,17 +2005,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // =========================
     // Section: Visitor Count
     // =========================
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxPi4cnkcZkwIr-UgoAPkg8akySSb7efwWuzrgt7RgqCk4guafYg1vulQ97JZAOyfn44Q/exec';
-    const visitCount = document.getElementById('visitCount');
-    // Fetch and increment visitor count
-    fetch(scriptURL + '?action=getCount')
-        .then(response => response.text())
-        .then(count => { visitCount.textContent = count; })
-        .catch(() => { visitCount.textContent = 'N/A'; });
-    fetch(scriptURL)
-        .then(response => response.text())
-        .then(count => { visitCount.textContent = count; })
-        .catch(() => { visitCount.textContent = 'N/A'; });
+    // const scriptURL = 'https://script.google.com/macros/s/AKfycbxPi4cnkcZkwIr-UgoAPkg8akySSb7efwWuzrgt7RgqCk4guafYg1vulQ97JZAOyfn44Q/exec';
+    // const visitCount = document.getElementById('visitCount');
+    // // Fetch and increment visitor count
+    // fetch(scriptURL + '?action=getCount')
+    //     .then(response => response.text())
+    //     .then(count => { visitCount.textContent = count; })
+    //     .catch(() => { visitCount.textContent = 'N/A'; });
+    // fetch(scriptURL)
+    //     .then(response => response.text())
+    //     .then(count => { visitCount.textContent = count; })
+    //     .catch(() => { visitCount.textContent = 'N/A'; });
 
     // =========================
     // Section: Feedback Modal & Firebase

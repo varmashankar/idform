@@ -105,7 +105,10 @@
                         <button type="button" class="btn btn-secondary" id="clearAlpha">Clear</button>
                     </div>
                 </form>
-
+                <div class="form-check form-switch mt-2">
+                <input class="form-check-input" type="checkbox" id="showStepsAlpha">
+                <label class="form-check-label" for="showStepsAlpha">Show Calculation Steps</label>
+            </div>
                 <div class="result-container">
                     <div class="result-header">
                         <h3>Calculation Result</h3>
@@ -113,7 +116,8 @@
                             <i class="fas fa-copy"></i> Copy
                         </button>
                     </div>
-                    <div class="result-content" id="resultAlpha"></div>
+                    <input type="text" readonly class="form-control result-content" id="resultAlpha">
+                    <pre class="calculation-steps" id="stepsAlpha"></pre>
                     <div class="copied-message" id="copiedAlpha">Copied to clipboard!</div>
                 </div>
             </section>
@@ -138,6 +142,12 @@
                     </div>
                 </form>
 
+                <!-- ADD THIS BLOCK -->
+                <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" id="showStepsBel">
+                    <label class="form-check-label" for="showStepsBel">Show Calculation Steps</label>
+                </div>
+
                 <div class="result-container">
                     <div class="result-header">
                         <h3>Calculation Result</h3>
@@ -145,7 +155,9 @@
                             <i class="fas fa-copy"></i> Copy
                         </button>
                     </div>
-                    <div class="result-content" id="resultBel"></div>
+                    <input type="text" readonly class="form-control result-content" id="resultBel">
+                    <pre class="calculation-steps" id="stepsBel"></pre>
+
                     <div class="copied-message" id="copiedBel">Copied to clipboard!</div>
                 </div>
             </section>
@@ -169,7 +181,10 @@
                         <button type="button" class="btn btn-secondary" id="clearGol">Clear</button>
                     </div>
                 </form>
-
+                <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" id="showStepsGol">
+                    <label class="form-check-label" for="showStepsGol">Show Calculation Steps</label>
+                </div>
                 <div class="result-container">
                     <div class="result-header">
                         <h3>Calculation Result</h3>
@@ -177,7 +192,8 @@
                             <i class="fas fa-copy"></i> Copy
                         </button>
                     </div>
-                    <div class="result-content" id="resultGol"></div>
+                    <input type="text" readonly class="form-control result-content" id="resultGol">
+                    <pre class="calculation-steps" id="stepsGol"></pre>
                     <div class="copied-message" id="copiedGol">Copied to clipboard!</div>
                 </div>
             </section>

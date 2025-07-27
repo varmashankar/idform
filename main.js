@@ -1874,17 +1874,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // =========================
     // Section: Visitor Count
     // =========================
-    // const scriptURL = 'https://script.google.com/macros/s/AKfycbxPi4cnkcZkwIr-UgoAPkg8akySSb7efwWuzrgt7RgqCk4guafYg1vulQ97JZAOyfn44Q/exec';
-    // const visitCount = document.getElementById('visitCount');
-    // // Fetch and increment visitor count
-    // fetch(scriptURL + '?action=getCount')
-    //     .then(response => response.text())
-    //     .then(count => { visitCount.textContent = count; })
-    //     .catch(() => { visitCount.textContent = 'N/A'; });
-    // fetch(scriptURL)
-    //     .then(response => response.text())
-    //     .then(count => { visitCount.textContent = count; })
-    //     .catch(() => { visitCount.textContent = 'N/A'; });
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxPi4cnkcZkwIr-UgoAPkg8akySSb7efwWuzrgt7RgqCk4guafYg1vulQ97JZAOyfn44Q/exec';
+    const visitCount = document.getElementById('visitCount');
+    // Fetch and increment visitor count
+    fetch(scriptURL + '?action=getCount')
+        .then(response => response.text())
+        .then(count => { visitCount.textContent = count; })
+        .catch(() => { visitCount.textContent = 'N/A'; });
+    fetch(scriptURL)
+        .then(response => response.text())
+        .then(count => { visitCount.textContent = count; })
+        .catch(() => { visitCount.textContent = 'N/A'; });
 
     // =========================
     // Section: Feedback Modal & Firebase

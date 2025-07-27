@@ -122,14 +122,8 @@ self.addEventListener('fetch', event => {
                     .then(response => {
                         if (response.status === 200) {
                             const responseClone = response.clone();
-                            // Check if the request URL is cacheable (not chrome-extension, etc.)
-                            if (request.url.startsWith('http') || request.url.startsWith('/')) {
-                                caches.open(DYNAMIC_CACHE)
-                                    .then(cache => cache.put(request, responseClone))
-                                    .catch(cacheError => {
-                                        console.warn('Service Worker: Cache put failed:', cacheError);
-                                    });
-                            }
+                            caches.open(DYNAMIC_CACHE)
+                                .then(cache => cache.put(request, responseClone));
                         }
                         return response;
                     });
